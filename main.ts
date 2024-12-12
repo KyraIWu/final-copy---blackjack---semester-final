@@ -1,3 +1,7 @@
+function calculate_velocity (function_num: number) {
+    card_velocity = (-100 + 10 * function_num) / 0.2 - 1500
+    return card_velocity
+}
 function create_dealer_card (first: boolean, num: number) {
     if (first == false) {
         card_number = card_number_list[randint(0, 12)]
@@ -578,7 +582,7 @@ function create_dealer_card (first: boolean, num: number) {
             }
         }
         dealer_card.setPosition(180, 27)
-        dealer_card.setVelocity(-2000 + 20 * num, 0)
+        dealer_card.setVelocity(calculate_velocity(num), 0)
         pause(200)
         dealer_card.setVelocity(0, 0)
         dealer_card.setPosition(80 + 20 * num, 27)
@@ -1225,7 +1229,7 @@ function create_card (num2: number) {
         }
     }
     player_card.setPosition(180, 93)
-    player_card.setVelocity(-2000 + 20 * num2, 0)
+    player_card.setVelocity(calculate_velocity(num2), 0)
     pause(200)
     player_card.setVelocity(0, 0)
     player_card.setPosition(80 + 20 * num2, 93)
@@ -1264,6 +1268,7 @@ function start_game () {
         dealer_sum += card_number
         if (player_sum == 21) {
             game.splash("BLACKJACK!")
+            game.gameOver(false)
         } else {
             draws = 0
             draw_cards()
@@ -3542,6 +3547,7 @@ let _10_j_q_k = 0
 let dealer_ace = 0
 let dealer_card: Sprite = null
 let card_number = 0
+let card_velocity = 0
 let can_start_game = false
 let card_number_list: number[] = []
 scene.setBackgroundImage(img`

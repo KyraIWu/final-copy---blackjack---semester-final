@@ -1231,10 +1231,8 @@ function create_card (num2: number) {
     player_card.setPosition(80 + 20 * num2, 93)
 }
 function dealer_draw_cards () {
-    while (true) {
-        if (dealer_sum < player_sum || dealer_sum == player_sum && dealer_sum < 14) {
-            create_dealer_card(false, 2 + dealer_draws)
-        }
+    while (dealer_sum < player_sum || dealer_sum == player_sum && dealer_sum <= 14) {
+        create_dealer_card(false, 2 + dealer_draws)
         dealer_sum += card_number
         dealer_draws += 1
         pause(100)
@@ -3504,6 +3502,11 @@ function start_game () {
             game.gameOver(false)
         } else if (dealer_sum > player_sum) {
         	
+        } else if (dealer_sum == player_sum && dealer_sum <= 14) {
+            timer.after(500, function () {
+                game.splash("Tie...")
+                game.reset()
+            })
         } else {
             dealer_draws = 0
             dealer_draw_cards()

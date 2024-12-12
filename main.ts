@@ -1268,7 +1268,7 @@ function start_game () {
         dealer_sum += card_number
         if (player_sum == 21) {
             game.splash("BLACKJACK!")
-            game.gameOver(false)
+            game.gameOver(true)
         } else {
             draws = 0
             draw_cards()

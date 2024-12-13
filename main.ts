@@ -3506,7 +3506,10 @@ function start_game () {
             game.splash("DEALER BLACKJACK!")
             game.gameOver(false)
         } else if (dealer_sum > player_sum) {
-        	
+            timer.after(500, function () {
+                game.splash("Dealer wins!")
+                game.gameOver(false)
+            })
         } else if (dealer_sum == player_sum && dealer_sum <= 14) {
             timer.after(500, function () {
                 game.splash("Tie...")
